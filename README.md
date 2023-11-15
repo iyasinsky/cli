@@ -1,17 +1,6 @@
-# Отримуємо і виводимо весь список контактів у вигляді таблиці (console.table)
+### Команди:
 
-node index.js --action="list"
-
-# Отримуємо контакт по id і виводимо у консоль об'єкт контакту або null, якщо контакту з таким id не існує.
-
-node index.js --action="get" --id 05olLMgyVQdWRwgKfg5J6
-
-# Додаємо контакт та виводимо в консоль об'єкт новоствореного контакту
-
-node index.js --action="add" --name Mango --email mango@gmail.com --phone 322-22-22
-
-# Видаляємо контакт та виводимо в консоль об'єкт видаленого контакту або null, якщо контакту з таким id не існує.
-
-node index.js --action="remove" --id qdggE76Jtbfd9eWJHrssH
-
-[Скріншот результату виконання всіх команд](https://ibb.co/Chn5FTH)
+- `npm start` &mdash; старт сервера в режимі production
+- `npm run start:dev` &mdash; старт сервера в режимі розробки (development)
+- `npm run lint` &mdash; запустити виконання перевірки коду з eslint, необхідно виконувати перед кожним PR та виправляти всі помилки лінтера
+- `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
