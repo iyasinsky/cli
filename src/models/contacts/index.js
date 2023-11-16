@@ -24,17 +24,24 @@ const removeContact = async (contactId) => {
   return deletedContact;
 };
 
-const addContact = async (name, email, phone) => {
+const addContact = async (body) => {
   const contacts = await listContacts();
   const contactToAdd = {
     id: nanoid(),
-    name,
-    email,
-    phone,
+    ...body,
   };
   contacts.push(contactToAdd);
   await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
   return contactToAdd;
+};
+
+const updateContact = async (contactId, body) => {
+  const contacts = await listContacts();
+  const contactToUpdate = contacts.findIndex(({ id }) => id === contactId);
+  if (contactToUpdate === -1) return null;
+  contacts[contactToUpdate] = { id: contactId, ...body };
+  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+  return contacts[contactToUpdate];
 };
 
 module.exports = {
@@ -42,4 +49,5 @@ module.exports = {
   getContactById,
   removeContact,
   addContact,
+  updateContact,
 };
