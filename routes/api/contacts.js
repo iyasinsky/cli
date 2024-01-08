@@ -4,11 +4,15 @@ const router = express.Router();
 
 const ctrl = require('../../controllers/contacts');
 
-const { validateBody, isValidId } = require('../../middlewares');
+const {
+  validateBody,
+  isValidId,
+  authentication,
+} = require('../../middlewares');
 
 const { contactSchema, statusSchema } = require('../../schemas/contacts');
 
-router.get('/', ctrl.getAll);
+router.get('/', authentication, ctrl.getAll);
 
 router.get('/:id', isValidId, ctrl.getById);
 
