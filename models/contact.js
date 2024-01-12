@@ -20,6 +20,11 @@ const contactSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId, // id юзера з MongoDB
+      ref: 'user', // назва колекціїї з якої взяли ObjectId
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );

@@ -14,19 +14,26 @@ const { contactSchema, statusSchema } = require('../../schemas/contacts');
 
 router.get('/', authentication, ctrl.getAll);
 
-router.get('/:id', isValidId, ctrl.getById);
+router.get('/:id', authentication, isValidId, ctrl.getById);
 
-router.post('/', validateBody(contactSchema), ctrl.add);
+router.post('/', authentication, validateBody(contactSchema), ctrl.add);
 
-router.put('/:id', isValidId, validateBody(contactSchema), ctrl.updateById);
+router.put(
+  '/:id',
+  authentication,
+  isValidId,
+  validateBody(contactSchema),
+  ctrl.updateById
+);
 
 router.patch(
   '/:id/favorite',
+  authentication,
   isValidId,
   validateBody(statusSchema),
   ctrl.updateStatus
 );
 
-router.delete('/:id', isValidId, ctrl.deleteById);
+router.delete('/:id', authentication, isValidId, ctrl.deleteById);
 
 module.exports = router;
